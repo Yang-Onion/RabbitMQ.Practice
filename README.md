@@ -1,0 +1,2 @@
+# RabbitMQ.Practice
+RabbitMQ.Practice
