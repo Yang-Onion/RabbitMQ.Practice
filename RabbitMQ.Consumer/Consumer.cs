@@ -14,10 +14,7 @@ namespace RabbitMQ.Consumer
 
             var factory = new ConnectionFactory()
             {
-                HostName = "192.168.2.122",
-                UserName = "Yang",
-                Password = "cms2016...",
-                Port = AmqpTcpEndpoint.UseDefaultPort
+                HostName = "localhost"
             };
             using (var connection = factory.CreateConnection())
             {
@@ -32,7 +29,7 @@ namespace RabbitMQ.Consumer
                         Console.WriteLine(" Consumer Received {0}", message);
                     };
                     channel.BasicConsume(queue: "hello",
-                                 noAck: true,
+                                 autoAck: true,
                                  consumer: consumer);
                     Console.WriteLine(" Press [enter] to exit.");
                     Console.ReadLine();

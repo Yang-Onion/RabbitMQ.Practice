@@ -2,6 +2,7 @@
 using System.Text;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
+using System.Collections.Concurrent;
 
 namespace RPC.Client
 {
@@ -9,25 +10,39 @@ namespace RPC.Client
     {
         private readonly IModel _channel;
         private readonly IConnection _connection;
-        private readonly QueueingBasicConsumer _consumer;
+        private readonly EventingBasicConsumer  _consumer;
         private readonly string _replyQueueName;
+        private readonly BlockingCollection<string> respQueue = new BlockingCollection<string>();
+        private readonly IBasicProperties props;
 
         public Client()
         {
             var factory = new ConnectionFactory
             {
-                HostName = "192.168.2.122",
-                UserName = "Yang",
-                Password = "cms2016...",
-                Port = AmqpTcpEndpoint.UseDefaultPort
+                HostName="localhost"
             };
             _connection = factory.CreateConnection();
             _channel = _connection.CreateModel();
-            _consumer = new QueueingBasicConsumer(_channel);
+            var _consumer = new EventingBasicConsumer(_channel);
             _replyQueueName = _channel.QueueDeclare().QueueName;
-            _channel.BasicConsume(queue:_replyQueueName,
-                                  noAck:true,
-                                  consumer: _consumer);
+
+            var correlationId = Guid.NewGuid().ToString();
+
+            props = _channel.CreateBasicProperties();
+            props.CorrelationId = correlationId;
+            props.ReplyTo = _replyQueueName;
+
+            _consumer.Received += (model, ea) =>
+            {
+                var body = ea.Body;
+                var response = Encoding.UTF8.GetString(body);
+                if (ea.BasicProperties.CorrelationId == correlationId)
+                {
+                    respQueue.Add(response);
+                }
+            };
+
+            
         }
 
         private string Call(string message)
@@ -43,14 +58,12 @@ namespace RPC.Client
                                   basicProperties: props,
                                   body: requestBody);
 
-            while (true)
-            {
-                var ea = (BasicDeliverEventArgs)_consumer.Queue.Dequeue();
-                if (ea.BasicProperties.CorrelationId.Equals(correlationId))
-                {
-                    return Encoding.UTF8.GetString(ea.Body);
-                }
-            }
+            _channel.BasicConsume(consumer: _consumer,
+                                   queue: _replyQueueName,
+                                   autoAck: true
+            );
+
+            return respQueue.Take();
         }
 
         public void Close()

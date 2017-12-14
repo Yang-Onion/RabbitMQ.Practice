@@ -13,10 +13,7 @@ namespace RabbitMQ.Routing.Subscriber
         {
             var factory = new ConnectionFactory()
             {
-                HostName = "192.168.2.122",
-                UserName = "Yang",
-                Password = "cms2016...",
-                Port = AmqpTcpEndpoint.UseDefaultPort
+                HostName = "localhost"
             };
             using (var connection = factory.CreateConnection())
             {
@@ -57,7 +54,7 @@ namespace RabbitMQ.Routing.Subscriber
 
                     Console.WriteLine($"queueName:{queueName}");
                     channel.BasicConsume(queue: queueName,
-                                         noAck: true,
+                                         autoAck: true,
                                          consumer: consumer);
 
                 }

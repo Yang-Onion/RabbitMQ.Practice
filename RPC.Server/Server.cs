@@ -11,10 +11,7 @@ namespace RPC.Server
         {
             var factory = new ConnectionFactory
             {
-                HostName = "192.168.2.122",
-                UserName = "Yang",
-                Password = "cms2016...",
-                Port = AmqpTcpEndpoint.UseDefaultPort
+                HostName="localhost"
             };
             using (var connection = factory.CreateConnection())
             {

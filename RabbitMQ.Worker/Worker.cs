@@ -14,10 +14,7 @@ namespace RabbitMQ.Worker
         {
             var factory = new ConnectionFactory()
             {
-                HostName = "192.168.2.122",
-                UserName = "Yang",
-                Password = "cms2016...",
-                Port = AmqpTcpEndpoint.UseDefaultPort
+                HostName = "localhost"
             };
             using (var connection = factory.CreateConnection())
             {
@@ -41,9 +38,9 @@ namespace RabbitMQ.Worker
 
                         channel.BasicAck(deliveryTag:ea.DeliveryTag,multiple:false);
                     };
-                    //noAck:(No Message Acknowledgment),true:当一条消息传给consumer A后，假如，consumer处理到一半突然挂掉了，它会造成消息丢失.
-                    //如果,noAck为false即需要消息确认.同上面的情况一样当consumer A挂到以后,消息不会丢失,此条消息还会传给consumer B.
-                    channel.BasicConsume("Task_Queue_durable_false", noAck: false,consumer: consumer);
+                    //autoAck:false:当一条消息传给consumer A后，假如，consumer处理到一半突然挂掉了，它会造成消息丢失.
+                    //如果,autoAck为true即需要消息确认.同上面的情况一样当consumer A挂到以后,消息不会丢失,此条消息还会传给consumer B.
+                    channel.BasicConsume("Task_Queue", autoAck: true,consumer: consumer);
                     Console.WriteLine(" Press [enter] to exit.");
                     Console.ReadLine();
                 }

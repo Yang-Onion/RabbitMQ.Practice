@@ -1,0 +1,16 @@
+F:\github\RabbitMQ.Practice\MassTransit.RabbitMQ.Extensions\bin\Debug\MassTransit.RabbitMQ.Extensions.dll
+F:\github\RabbitMQ.Practice\MassTransit.RabbitMQ.Extensions\bin\Debug\MassTransit.RabbitMQ.Extensions.pdb
+F:\github\RabbitMQ.Practice\MassTransit.RabbitMQ.Extensions\bin\Debug\GreenPipes.dll
+F:\github\RabbitMQ.Practice\MassTransit.RabbitMQ.Extensions\bin\Debug\MassTransit.dll
+F:\github\RabbitMQ.Practice\MassTransit.RabbitMQ.Extensions\bin\Debug\MassTransit.RabbitMqTransport.dll
+F:\github\RabbitMQ.Practice\MassTransit.RabbitMQ.Extensions\bin\Debug\NewId.dll
+F:\github\RabbitMQ.Practice\MassTransit.RabbitMQ.Extensions\bin\Debug\Newtonsoft.Json.dll
+F:\github\RabbitMQ.Practice\MassTransit.RabbitMQ.Extensions\bin\Debug\RabbitMQ.Client.dll
+F:\github\RabbitMQ.Practice\MassTransit.RabbitMQ.Extensions\bin\Debug\GreenPipes.xml
+F:\github\RabbitMQ.Practice\MassTransit.RabbitMQ.Extensions\bin\Debug\MassTransit.xml
+F:\github\RabbitMQ.Practice\MassTransit.RabbitMQ.Extensions\bin\Debug\MassTransit.RabbitMqTransport.xml
+F:\github\RabbitMQ.Practice\MassTransit.RabbitMQ.Extensions\bin\Debug\Newtonsoft.Json.xml
+F:\github\RabbitMQ.Practice\MassTransit.RabbitMQ.Extensions\bin\Debug\RabbitMQ.Client.xml
+F:\github\RabbitMQ.Practice\MassTransit.RabbitMQ.Extensions\obj\Debug\MassTransit.RabbitMQ.Extensions.csproj.CoreCompileInputs.cache
+F:\github\RabbitMQ.Practice\MassTransit.RabbitMQ.Extensions\obj\Debug\MassTransit.RabbitMQ.Extensions.dll
+F:\github\RabbitMQ.Practice\MassTransit.RabbitMQ.Extensions\obj\Debug\MassTransit.RabbitMQ.Extensions.pdb

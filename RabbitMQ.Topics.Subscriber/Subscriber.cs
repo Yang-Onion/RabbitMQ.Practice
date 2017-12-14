@@ -13,10 +13,7 @@ namespace RabbitMQ.Topics.Subscriber
         {
             var factory = new ConnectionFactory()
             {
-                HostName = "192.168.2.122",
-                UserName = "Yang",
-                Password = "cms2016...",
-                Port = AmqpTcpEndpoint.UseDefaultPort
+                HostName = "localhost"
             };
             using (var connection = factory.CreateConnection())
             using (var channel = connection.CreateModel())
@@ -53,7 +50,7 @@ namespace RabbitMQ.Topics.Subscriber
                                       message);
                 };
                 channel.BasicConsume(queue: queueName,
-                                     noAck: true,
+                                     autoAck: true,
                                      consumer: consumer);
 
                 Console.WriteLine(" Press [enter] to exit.");
